@@ -12,11 +12,11 @@ on:
         options:
           - all
 
-          jobs:
-            run-test:
-            runs-on: ubuntu-latest
-            name: Tests
-            steps:
+        jobs:
+          run-test:
+          runs-on: ubuntu-latest
+          name: Tests
+          steps:
               - name: Copy source code
                 uses: actions/checkout@v4
               - name: Set up Python env
