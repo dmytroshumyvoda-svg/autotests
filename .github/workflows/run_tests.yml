@@ -1,7 +1,6 @@
 name: Run autotests
 
-
-on: 
+on:
   workflow_dispatch:
     inputs:
       deployment_target:
@@ -12,18 +11,22 @@ on:
         options:
           - all
 
-        jobs:
-          run-test:
-          runs-on: ubuntu-latest
-          name: Tests
-          steps:
-              - name: Copy source code
-                uses: actions/checkout@v4
-              - name: Set up Python env
-                uses: actions/setup-python@v5
-              - with: 
-                  python-version: "3.14"
-              - name: install dependencies
-                run: pip install -r requirements.txt
-              - name: Run test
-                run: pytest -v
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    name: Tests
+
+    steps:
+      - name: Copy source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python env
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run test
+        run: pytest -v
